@@ -15,25 +15,25 @@
       <tr>
         <th>Name</th>
         <th>Description</th>
-        <th style='text-align: center'>Info</th>
-        <th style='text-align: center'>Edit</th>
-        <th style='text-align: center'>Delete</th>
+        <th class='glyph'>Info</th>
+        <th class='glyph'>Edit</th>
+        <th class='glyph'>Delete</th>
       </tr>
       <% @creatures.each do |creature| %>
         <tr>
           <td> <%= creature.name %> </li> </td>
           <td> <%= creature.description %> </td>
-          <td style='text-align: center'> <%= link_to show_creature_path(creature) do %>
+          <td class='glyph'> <%= link_to show_creature_path(creature) do %>
                  <span class='glyphicon glyphicon-info-sign'></span>
                <% end %> </td>
-          <td style='text-align: center'> <%= link_to edit_creature_path(creature) do %>
+          <td class='glyph'> <%= link_to edit_creature_path(creature) do %>
                  <span class='glyphicon glyphicon-pencil'></span>
                <% end %> </td>
-          <td style='text-align: center'> <%= link_to delete_creature_path(creature),
+          <td class='glyph'> <%= link_to delete_creature_path(creature),
                                               { method: :delete,
                                                 data: { confirm: 'Are you sure?' }
                                               } do %>
-                 <span class='glyphicon glyphicon-remove-sign' style='color: red'></span>
+                 <span class='glyphicon glyphicon-remove-sign'></span>
                <% end %> </td>
         </tr>
       <% end %>
