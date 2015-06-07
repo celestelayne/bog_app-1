@@ -9,9 +9,9 @@
   <div class='container'>
 
     <%= link_to 'Create new', new_creature_path, class: "btn btn-primary" %>
-    <br><br>
+    <br>
     <table class='table table-striped'>
-      <caption>Creatures</caption>
+      <caption><h3>Creatures</h3></caption>
       <tr>
         <th>Name</th>
         <th>Description</th>
@@ -33,7 +33,7 @@
                                               { method: :delete,
                                                 data: { confirm: 'Are you sure?' }
                                               } do %>
-                 <span class='glyphicon glyphicon-remove-sign'></span>
+                 <span class='glyphicon glyphicon-remove-circle'></span>
                <% end %> </td>
         </tr>
       <% end %>
