@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Creatures Index</title>
+</head>
+<body>
+  <br><br>
+  <div class='container'>
+
+    <%= link_to 'Create new', new_creature_path, class: "btn btn-primary" %>
+    <br><br>
+    <table class='table table-striped'>
+      <caption>Creatures</caption>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th style='text-align: center'>Info</th>
+        <th style='text-align: center'>Edit</th>
+        <th style='text-align: center'>Delete</th>
+      </tr>
+      <% @creatures.each do |creature| %>
+        <tr>
+          <td> <%= creature.name %> </li> </td>
+          <td> <%= creature.description %> </td>
+          <td style='text-align: center'> <%= link_to show_creature_path(creature) do %>
+                 <span class='glyphicon glyphicon-info-sign'></span>
+               <% end %> </td>
+          <td style='text-align: center'> <%= link_to edit_creature_path(creature) do %>
+                 <span class='glyphicon glyphicon-pencil'></span>
+               <% end %> </td>
+          <td style='text-align: center'> <%= link_to delete_creature_path(creature),
+                                              { method: :delete,
+                                                data: { confirm: 'Are you sure?' }
+                                              } do %>
+                 <span class='glyphicon glyphicon-remove-sign' style='color: red'></span>
+               <% end %> </td>
+        </tr>
+      <% end %>
+    </table>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New Creature</title>
+</head>
+<body>
+  <br><br>
+  <div class='container'>
+
+    <%= form_for @creature, url: creatures_path do |f| %>
+      <div class='row'>
+        <div class='col-md-1'>
+          <%= f.label "Name: " %>
+        </div>
+        <div class='col-md-4'>
+          <%= f.text_field :name, { autofocus: "true",
+                                         size: 35,
+                                  placeholder: "Enter name" } %>
+        </div>
+      </div>
+      <br>
+      <div class='row'>
+        <div class='col-md-1'>
+          <%= f.label "Description: " %>
+        </div>
+        <div class='col-md-4'>
+          <%= f.text_area :description, { rows: 3,
+                                          cols: 35,
+                                   placeholder: "Enter description" } %>
+        </div>
+      </div>
+      <br>
+      <div class='row'>
+        <div class='col-md-2'>
+          <%= f.submit "Create creature", class: "btn btn-primary" %>
+        </div>
+        <div class='col-md-1 col-md-offset-1'>
+          <%= link_to 'Cancel', creatures_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</body>
+</html>

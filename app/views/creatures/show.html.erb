@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Show Creature</title>
+</head>
+<body>
+  <br><br>
+  <div class='container'>
+
+    <%= form_for @creature, url: creatures_path(@creature) do |f| %>
+      <div class='row'>
+        <div class='col-md-1'>
+          <%= f.label "Name: " %>
+        </div>
+        <div class='col-md-4'>
+          <%= f.text_field :name, { autofocus: "true", size: 35, readonly: "true" } %>
+        </div>
+      </div>
+      <br>
+      <div class='row'>
+        <div class='col-md-1'>
+          <%= f.label "Description: " %>
+        </div>
+        <div class='col-md-4'>
+          <%= f.text_area :description, { rows: 3, cols: 35, readonly: "true" } %>
+        </div>
+      </div>
+    <% end %>
+    <br>
+    <div class='row'>
+      <div class='col-md-2'>
+        <%= link_to 'Edit Creature', edit_creature_path(@creature), class: "btn btn-primary" %>
+      </div>
+      <div class='col-md-2'>
+        <%= link_to 'Back to Creatures', creatures_path, class: "btn btn-primary pull-right" %>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
