@@ -9,7 +9,7 @@
   <div class='container'>
 
     <p><span class='glyphicon glyphicon-chevron-left'></span>
-       <%= link_to 'Back to Creatures', creatures_path %>
+       <%= link_to('Back to Creatures', creatures_path) %>
     </p>
 
     <div class='row'>
@@ -17,19 +17,20 @@
         <div class='well'>
 
           <div class='row'>
-            <div class='col-md-6'>
+            <div class='col-md-6 col-md-offset-1'>
               <h3>Creature Profile</h3>
             </div>
-            <div class='col-md-4 text-right'>
+            <div class='col-md-3 text-right'>
               <h3> <%= link_to edit_creature_path(@creature) do %>
                     <span class='glyphicon glyphicon-pencil'></span>
                   <% end %>
               </h3>
             </div>
             <div class='col-md-2'>
-              <h3> <%= link_to delete_creature_path(@creature),
+              <!-- method option dynamically creates and submits a form  -->
+              <h3> <%= link_to(delete_creature_path(@creature),
                                 { method: :delete,
-                                  data: { confirm: 'Are you sure?' } } do %>
+                                  data: { confirm: 'Are you sure?' } }) do %>
                     <span class='glyphicon glyphicon-remove-circle'></span>
                   <% end %>
               </h3>
@@ -37,25 +38,26 @@
           </div>
           <br>
 
-          <%= form_for @creature, url: creatures_path(@creature) do |f| %>
+          <%= form_for(@creature) do |f| %>
             <div class='row'>
-              <div class='col-md-2'>
-                <%= label_tag "Name: " %>
+              <div class='col-md-3 text-right'>
+                <%= label_tag("Name: ") %>
               </div>
-              <div class='col-md-8 col-md-offset-1'>
+              <div class='col-md-8'>
                 <p> <%= @creature.name %> </p>
               </div>
             </div>
             <br>
             <div class='row'>
-              <div class='col-md-2'>
-                <%= label_tag "Description: " %>
+              <div class='col-md-3 text-right'>
+                <%= label_tag("Description: ") %>
               </div>
-              <div class='col-md-8 col-md-offset-1'>
+              <div class='col-md-8'>
                 <p> <%= @creature.description %> </p>
               </div>
             </div>
           <% end %>
+          <br>
 
         </div>  <!-- well -->
 

@@ -23,13 +23,13 @@ class CreaturesController < ApplicationController
   def create
     creature = Creature.create creature_params
     # redirect_to "/planes/#{plane.id}"
-    redirect_to show_creature_path(creature)   # pass the Active Record object to a path helper
+    redirect_to creature_path(creature)   # pass the Active Record object to a path helper
   end
 
   def update
     creature = Creature.find params[:id]
     creature.update_attributes creature_params
-    redirect_to show_creature_path(creature)
+    redirect_to creature_path(creature)
   end
 
   def destroy

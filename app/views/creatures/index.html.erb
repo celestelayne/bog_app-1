@@ -8,35 +8,54 @@
   <br><br>
   <div class='container'>
 
-    <%= link_to 'Create new', new_creature_path, class: "btn btn-primary" %>
+    <%#= link_to('Create new', '/creatures/new/', class: "btn btn-primary")  %>
+    <!-- use a path helper! -->
+    <%= link_to('Create new', new_creature_path, class: "btn btn-primary") %>
     <br>
+
     <table class='table table-striped'>
       <caption><h3>Creatures</h3></caption>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th class='glyph'>Info</th>
-        <th class='glyph'>Edit</th>
-        <th class='glyph'>Delete</th>
-      </tr>
-      <% @creatures.each do |creature| %>
+      <!-- <thead> -->
         <tr>
-          <td> <%= creature.name %> </li> </td>
-          <td> <%= creature.description %> </td>
-          <td class='glyph'> <%= link_to show_creature_path(creature) do %>
-                 <span class='glyphicon glyphicon-info-sign'></span>
-               <% end %> </td>
-          <td class='glyph'> <%= link_to edit_creature_path(creature) do %>
-                 <span class='glyphicon glyphicon-pencil'></span>
-               <% end %> </td>
-          <td class='glyph'> <%= link_to delete_creature_path(creature),
-                                              { method: :delete,
-                                                data: { confirm: 'Are you sure?' }
-                                              } do %>
-                 <span class='glyphicon glyphicon-remove-circle'></span>
-               <% end %> </td>
+          <th>Name</th>
+          <th>Description</th>
+          <th class='glyph'>Info</th>
+          <th class='glyph'>Edit</th>
+          <th class='glyph'>Delete</th>
         </tr>
-      <% end %>
+      <!-- </thead> -->
+      <!-- <tbody> -->
+        <% @creatures.each do |creature| %>
+          <tr>
+            <td> <%= creature.name %> </td>
+            <td> <%= creature.description %> </td>
+            <!-- Below we're using a variation on link_to that lets us
+            provide a block of code.  This way we can make the name a span
+            and add a glyphicon -->
+            <!-- The creature object is passed to the path helper
+            so that the path helper knows which model to show or edit -->
+            <td class='glyph'>
+              <%= link_to(creature_path(creature)) do %>
+                <span class='glyphicon glyphicon-info-sign'></span>
+              <% end %>
+            </td>
+            <td class='glyph'>
+              <%= link_to(edit_creature_path(creature)) do %>
+                <span class='glyphicon glyphicon-pencil'></span>
+              <% end %>
+            </td>
+            <!-- method option dynamically creates and submits a form  -->
+            <td class='glyph'>
+              <%= link_to(delete_creature_path(creature),
+                  { method: :delete,
+                      data: { confirm: 'Are you sure?' }
+                  }) do %>
+                <span class='glyphicon glyphicon-remove-circle'></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <!-- </tbody> -->
     </table>
 
   </div>

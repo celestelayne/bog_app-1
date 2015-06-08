@@ -8,8 +8,9 @@
   <br><br>
   <div class='container'>
 
-    <p><span class='glyphicon glyphicon-chevron-left'></span>
-       <%= link_to 'Back to Creatures', creatures_path %>
+    <p>
+      <span class='glyphicon glyphicon-chevron-left'></span>
+      <%= link_to('Back to Creatures', creatures_path) %>
     </p>
 
     <div class='row'>
@@ -17,37 +18,44 @@
         <div class='well'>
 
           <div class='row'>
-            <div class='col-md-6'>
+            <div class='col-md-6 col-md-offset-1'>
               <h3>New Creature</h3>
             </div>
           </div>
           <br>
 
-          <%= form_for(@creature, url: create_creature_path(@creature), method: "post") do |f| %>
+          <!-- Default method for form_for is POST -->
+          <!-- This works: -->
+          <%#= form_for(@creature, url: "/creatures") do |f| %>
+          <!-- Or with a path helper: -->
+          <%#= form_for(@creature, url: creatures_path) do |f| %>
+          <!-- Even easier: Rails infers the action from our model object  -->
+          <!-- Hint: Check out the generated form in the Chrome Inspector -->
+          <%= form_for(@creature) do |f| %>
             <div class='row'>
-              <div class='col-md-2'>
+              <div class='col-md-3 text-right'>
                 <%= f.label "Name: " %>
               </div>
-              <div class='col-md-8 col-md-offset-1'>
-                <%= f.text_field :name, { autofocus: "true", style:"width:100%" } %>
+              <div class='col-md-8'>
+                <%= f.text_field(:name, { autofocus: "true" }) %>
               </div>
             </div>
             <br>
             <div class='row'>
-              <div class='col-md-2'>
+              <div class='col-md-3 text-right'>
                 <%= f.label "Description: " %>
               </div>
-              <div class='col-md-8 col-md-offset-1'>
-                <%= f.text_area :description, { rows: 3, style:"width:100%" } %>
+              <div class='col-md-8'>
+                <%= f.text_area(:description, { rows: 3 }) %>
+              </div>
+            </div>
+            <br><br>
+            <div class='row'>
+              <div class='col-md-11 text-right'>
+                <%= f.submit("Create Creature", class: "btn btn-primary") %>
               </div>
             </div>
             <br>
-            <div class='row'>
-              <div class='col-md-11 text-right'>
-                <%= f.submit "Create Creature", class: "btn btn-primary" %>
-              </div>
-
-            </div>
           <% end %>
 
         </div>    <!-- well -->
